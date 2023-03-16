@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from api.models import AccountAccountAccountJournalRel
+from api.models import ResUsers
 
 # Create your views here.
 def index_page(request):
-  account = AccountAccountAccountJournalRel.objects.all()
+  users = ResUsers.objects.all()
 
   data = {
-    'accounts': account
+    'users': users
   }
 
-  return render(request, 'account/index.html', data)
+  return render(request, 'user/index.html', data)

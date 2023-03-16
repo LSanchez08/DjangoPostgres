@@ -19,5 +19,5 @@ from api.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('cuentas', index_page, name='index_page'),
+    path('user/', index_page, name='index_page'),
 ]
