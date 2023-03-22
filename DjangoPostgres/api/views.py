@@ -10,3 +10,6 @@ def index_page(request):
   }
 
   return render(request, 'user/index.html', data)
+
+def home(request):
+  return render(request, "pages/home.html")
