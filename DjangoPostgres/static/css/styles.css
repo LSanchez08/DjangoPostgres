@@ -1,3 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
+
+:root {
+    --font-title-family: 'Delicious Handrawn', cursive;
+    --font-text-family: 'Montserrat Alternates', sans-serif;
+
+}
+
 html {
     scroll-behavior: smooth;
 }
+
+/* ============= ABOUT ============= */
+#about {
+    margin: 2%;
+    height: 100vh;
+}
+
+.title {
+    font-family: var(--font-title-family);
+    font-size: 70px;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.text {
+    font-family: var(--font-text-family);
+    text-align: justify;
+    font-weight: bold;
+}
+
+.div-main-about {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+/* ============= END ABOUT ============= */
+
+/* ============= SERVICES ============= */
+#services {
+    margin: 2%;
+    height: 100vh;
+}
+/* ============= END SERVICES ============= */
+
+/* ============= CONTACT ============= */
+#contact {
+    margin: 2%;
+    height: 100vh;
+}
+/* ============= END CONTACT ============= */
