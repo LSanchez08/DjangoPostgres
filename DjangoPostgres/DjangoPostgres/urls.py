@@ -6,4 +6,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('user/', index_page, name='index_page'),
+    path('api/odooTest', odooTest, name='odooTest'),
 ]
