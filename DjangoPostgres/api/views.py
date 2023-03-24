@@ -29,7 +29,25 @@ def index_page(request):
   return render(request, 'user/index.html', data)
 
 def home(request):
-  return render(request, "pages/home.html")
+
+  response = {}
+  try:
+    ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [])
+    print(len(ids))
+    if (len(ids) == 0):
+      response['response'] = []
+    else:
+      response['response'] = ids
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
+
+  context = {
+    "services": response
+  }
+
+  return render(request, "pages/home.html", context)
 
 def odooGet(request):
   response = {}

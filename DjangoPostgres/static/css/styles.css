@@ -40,12 +40,16 @@ html {
 /* ============= SERVICES ============= */
 #services {
     margin: 2%;
-    height: 100vh;
 }
 
 .div-main-services {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    margin-bottom: 2%;
 }
 
 /* ============= END SERVICES ============= */
