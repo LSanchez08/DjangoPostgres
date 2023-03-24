@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'DjangoPostgres.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Parcial2",
+        "NAME": "PetWell",
         "USER": "odoo",
         "PASSWORD": "myodoo",
         "HOST": "18.223.171.177",

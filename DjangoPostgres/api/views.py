@@ -5,9 +5,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from api.models import ResUsers
 
+from datetime import date
+
 url = 'http://18.223.171.177:8069'
-db = 'Parcial2'
-username = 'admin@email.com'
+db = 'PetWell'
+username = 'contacto@petwell.com'
 password = 'odoo'
 
 common = xmlrpc.client.ServerProxy('%s/xmlrpc/2/common' % url)
@@ -17,7 +19,9 @@ uid = common.authenticate(db, username, password, {})
 # Create your views here.
 def index_page(request):
   users = ResUsers.objects.all()
-
+  print(len(users))
+  for e in users:
+    print(e.id)
   data = {
     'users': users
   }
@@ -27,13 +31,38 @@ def index_page(request):
 def home(request):
   return render(request, "pages/home.html")
 
-def odooTest(request):
-  ids = models.execute_kw(db, uid, password, 'res.users', 'search', [[['password', '=', 'none']]], {'limit': 1})
-  [record] = models.execute_kw(db, uid, password, 'res.users', 'read', [ids])
+def odooGet(request):
   response = {}
-  response['message'] = record
-  print(len(record))
+  try:
+    ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [])
+    print(len(ids))
+    if (len(ids) == 0):
+      response['response'] = []
+    else:
+      response['response'] = ids
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
 
   return HttpResponse(json.dumps(response), content_type="application/json")
+
+def odooPost(request):
+  try:
+    response = {}
+    id = models.execute_kw(db, uid, password, 'product.product', 'create', [{
+      'name': 'Prueba',
+      'description': 'Prueba',
+      'list_price': 0
+    }])
+    response['response'] = 'Object Added.'
+    response['id'] = id
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
+
+
+  return HttpResponse(json.dumps(response), content_type="application/json") 
 
 
