@@ -63,69 +63,20 @@
     <section id="services">
         <h1 class="title">Servicios</h1>
         <div class="container div-main-services">
-            <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Servicio</th>
-                    <th scope="col">Acción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>22/03/2022</td>
-                    <td>Baño completo</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>21/03/2022</td>
-                    <td>Limpieza Dental</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>20/03/2022</td>
-                    <td>Corte de uñas</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Alberto</td>
-                    <td>109/03/2022</td>
-                    <td>Corte de uñas</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Joaquin</td>
-                    <td>18/03/2022</td>
-                    <td>Baño completo</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            {%if services%}
+                {%for ser in services%}
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                {%endfor%}
+            {%else%}
+                <p>no hay servicios guardados</p>
+            {%endif%}
         </div>
     </section>
     <!-- ================= END SERVICES ================= -->
@@ -272,36 +223,11 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-        © 2020 Copyright:
+        © 2023 Copyright:
         <a class="text-white" href="#">Veterinaria PetWell</a>
         </div>
         <!-- Copyright -->
     </footer>
     <!-- ================= END FOOTER ================= -->
-
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Servicio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 {% endblock %}

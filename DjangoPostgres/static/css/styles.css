@@ -42,6 +42,12 @@ html {
     margin: 2%;
     height: 100vh;
 }
+
+.div-main-services {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 /* ============= END SERVICES ============= */
 
 /* ============= CONTACT ============= */
