@@ -14,7 +14,7 @@ html {
 /* ============= ABOUT ============= */
 #about {
     margin: 2%;
-    height: 100vh;
+    margin-bottom: 10%;
 }
 
 .title {
@@ -40,6 +40,7 @@ html {
 /* ============= SERVICES ============= */
 #services {
     margin: 2%;
+    margin-bottom: 10%;
 }
 
 .div-main-services {
@@ -52,11 +53,18 @@ html {
     margin-bottom: 2%;
 }
 
+.container-btn-create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
 /* ============= END SERVICES ============= */
 
 /* ============= CONTACT ============= */
 #contact {
     margin: 2%;
-    height: 100vh;
+    margin-bottom: 8%;
 }
 /* ============= END CONTACT ============= */

@@ -29,7 +29,6 @@ def index_page(request):
   return render(request, 'user/index.html', data)
 
 def home(request):
-
   response = {}
   try:
     ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [])
@@ -48,6 +47,12 @@ def home(request):
   }
 
   return render(request, "pages/home.html", context)
+
+def update(request):
+  return render(request, "pages/update.html")
+
+def create(request):
+  return render(request, "pages/create.html")
 
 def odooGet(request):
   response = {}

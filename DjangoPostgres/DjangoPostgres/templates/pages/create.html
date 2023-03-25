@@ -1,0 +1,47 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %} PetWell {% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">PetWell</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="../">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <br>
+    <h1>Crear servicio</h1>
+    <br>
+    <form>
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" id="name" placeholder="Nombre de la mascota">
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input type="text" class="form-control" id="description" placeholder="Descripción del servicio a realizar">
+      </div>
+      <div class="form-group">
+        <label for="name">Precio</label>
+        <input type="number" class="form-control" id="name" placeholder="Precio del servicio a realizar">
+      </div>
+      <div class="form-group">
+        <label for="name">imagen</label>
+        <input type="text" class="form-control" id="name" placeholder="Link de la imagen a subir">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear servicio</button>
+    </form>
+  </div>
+{% endblock %}
