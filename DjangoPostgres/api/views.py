@@ -70,14 +70,31 @@ def odooGet(request):
 
   return HttpResponse(json.dumps(response), content_type="application/json")
 
+def odooGetOne(request):
+  response = {}
+  try:
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [[['id', '=', body[id]]]])
+    print(len(ids))
+    if (len(ids) == 0):
+      response['response'] = []
+    else:
+      response['response'] = ids
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
+
+  return HttpResponse(json.dumps(response), content_type="application/json")
+
 def odooPost(request):
   try:
     response = {}
-    id = models.execute_kw(db, uid, password, 'product.product', 'create', [{
-      'name': 'Prueba',
-      'description': 'Prueba',
-      'list_price': 0
-    }])
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+
+    id = models.execute_kw(db, uid, password, 'product.product', 'create', body)
     response['response'] = 'Object Added.'
     response['id'] = id
   except Exception as error:
@@ -88,4 +105,36 @@ def odooPost(request):
 
   return HttpResponse(json.dumps(response), content_type="application/json") 
 
+def odooPut(request):
+  try:
+    response = {}
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
 
+    models.execute_kw(db, uid, password, 'product.product', 'write', [[body['id']], body])
+    response['response'] = 'Object Updated.'
+    response['id'] = id
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
+
+
+  return HttpResponse(json.dumps(response), content_type="application/json") 
+
+def odooDelete(request):
+  try:
+    response = {}
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+
+    models.execute_kw(db, uid, password, 'product.product', 'unlink', [[body['id']]])
+    response['response'] = 'Object Deleted.'
+    response['id'] = id
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
+
+
+  return HttpResponse(json.dumps(response), content_type="application/json") 
