@@ -1,0 +1,35 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %} PetWell - Ver Servicio {% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">PetWell</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class="container info-card ">
+    <h1 class="title" style="margin-bottom: 5%;">Ver servicio</h1>
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'imgs/perrito1.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{name_pet}}</h5>
+          <p class="card-text">Descripción: {{description_pet}}</p>
+          <p class="card-text">Precio: {{price_pet}}</p>
+          <a href="{% url 'update' id_pet=id_pet name_pet=name_pet description_pet=description_pet price_pet=price_pet %}" class="btn btn-primary">Editar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

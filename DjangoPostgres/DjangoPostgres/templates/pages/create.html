@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="../">Inicio <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'home' %}">Inicio <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         </div>
@@ -22,7 +22,7 @@
 {% block content %}
   <div class="container">
     <br>
-    <h1>Crear servicio</h1>
+    <h1 class="title">Crear servicio</h1>
     <br>
     <form method="post" action="{% url 'odooPost' %}">
       <div class="form-group">
@@ -36,10 +36,6 @@
       <div class="form-group">
         <label for="price">Precio</label>
         <input type="number" class="form-control" name="price" id="name" placeholder="Precio del servicio a realizar">
-      </div>
-      <div class="form-group">
-        <label for="name">imagen</label>
-        <input type="text" class="form-control" id="name" placeholder="Link de la imagen a subir">
       </div>
       <button type="submit" class="btn btn-primary">Crear servicio</button>
     </form>

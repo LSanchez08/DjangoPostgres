@@ -30,6 +30,7 @@ def index_page(request):
   return render(request, 'user/index.html', data)
 
 def home(request):
+  print(request)
   id_card_var =  7
 
   response = {}
@@ -50,6 +51,16 @@ def home(request):
   }
 
   return render(request, "pages/home.html", context)
+
+def services(request, id_pet, name_pet, description_pet, price_pet):
+  context = {
+    "id_pet": id_pet,
+    "name_pet": name_pet,
+    "description_pet": description_pet,
+    "price_pet": price_pet
+  }
+
+  return render(request, "pages/services.html", context)
 
 def update(request, id_pet, name_pet, description_pet, price_pet):
   context = {
@@ -144,7 +155,7 @@ def odooDelete(request):
   try:
     
     body = {
-      'id': request.POST.get('id'),
+      'id': int(request.POST.get('id')),
     }
 
     id = models.execute_kw(db, uid, password, 'product.product', 'unlink', [[body['id']]])
@@ -156,7 +167,7 @@ def odooDelete(request):
     response['response'] = []
 
 
-  return HttpResponse(json.dumps(response), content_type="application/json")
+  return home(request)
 
 def odooAddImage (request):
   response = {}

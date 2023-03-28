@@ -4,6 +4,7 @@ from api.views import *
 
 urlpatterns = [
     path('', home, name='home'),
+    path('services/<id_pet>/<name_pet>/<description_pet>/<price_pet>', services, name='services'),
     path('update/<id_pet>/<name_pet>/<description_pet>/<price_pet>', update, name='update'),
     path('create/', create, name='create'),
     path('admin/', admin.site.urls),
