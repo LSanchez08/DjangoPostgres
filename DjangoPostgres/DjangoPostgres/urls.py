@@ -13,4 +13,5 @@ urlpatterns = [
     path('api/odooPost', odooPost, name='odooPost'),
     path('api/odooPut', odooPut, name='odooPut'),
     path('api/odooDelete', odooDelete, name='odooDelete'),
+    path('api/odooAddImage', odooAddImage, name='odooAddImage'),
 ]

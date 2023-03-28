@@ -24,18 +24,18 @@
     <br>
     <h1>Crear servicio</h1>
     <br>
-    <form>
+    <form method="post" action="{% url 'odooPost' %}">
       <div class="form-group">
         <label for="name">Nombre</label>
-        <input type="text" class="form-control" id="name" placeholder="Nombre de la mascota">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre de la mascota">
       </div>
       <div class="form-group">
         <label for="description">Descripción</label>
-        <input type="text" class="form-control" id="description" placeholder="Descripción del servicio a realizar">
+        <input type="text" class="form-control" name="description" id="description" placeholder="Descripción del servicio a realizar">
       </div>
       <div class="form-group">
-        <label for="name">Precio</label>
-        <input type="number" class="form-control" id="name" placeholder="Precio del servicio a realizar">
+        <label for="price">Precio</label>
+        <input type="number" class="form-control" name="price" id="name" placeholder="Precio del servicio a realizar">
       </div>
       <div class="form-group">
         <label for="name">imagen</label>

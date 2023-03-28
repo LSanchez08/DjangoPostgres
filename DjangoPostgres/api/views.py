@@ -3,6 +3,7 @@ import json
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from api.models import ResUsers
 
 from datetime import date
@@ -32,7 +33,6 @@ def home(request):
   response = {}
   try:
     ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [])
-    print(len(ids))
     if (len(ids) == 0):
       response['response'] = []
     else:
@@ -43,7 +43,7 @@ def home(request):
     response['response'] = []
 
   context = {
-    "services": response
+    "services": response['response']
   }
 
   return render(request, "pages/home.html", context)
@@ -75,7 +75,7 @@ def odooGetOne(request):
   try:
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
-    ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [[['id', '=', body[id]]]])
+    ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [[['id', '=', body['id']]]])
     print(len(ids))
     if (len(ids) == 0):
       response['response'] = []
@@ -89,12 +89,16 @@ def odooGetOne(request):
   return HttpResponse(json.dumps(response), content_type="application/json")
 
 def odooPost(request):
+  response = {}
   try:
-    response = {}
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
+    
+    body = {
+      'name': request.POST.get('name'),
+      'description': request.POST.get('description'),
+      'price': request.POST.get('price'),
+    }
 
-    id = models.execute_kw(db, uid, password, 'product.product', 'create', body)
+    id = models.execute_kw(db, uid, password, 'product.product', 'create', [body])
     response['response'] = 'Object Added.'
     response['id'] = id
   except Exception as error:
@@ -103,15 +107,19 @@ def odooPost(request):
     response['response'] = []
 
 
-  return HttpResponse(json.dumps(response), content_type="application/json") 
+  return home(request)
 
 def odooPut(request):
+  response = {}
   try:
-    response = {}
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
+    body = {
+      'id': request.POST.get('id'),
+      'name': request.POST.get('name'),
+      'description': request.POST.get('description'),
+      'price': request.POST.get('price'),
+    }
 
-    models.execute_kw(db, uid, password, 'product.product', 'write', [[body['id']], body])
+    id = models.execute_kw(db, uid, password, 'product.product', 'write', [[body['id']], body])
     response['response'] = 'Object Updated.'
     response['id'] = id
   except Exception as error:
@@ -120,15 +128,17 @@ def odooPut(request):
     response['response'] = []
 
 
-  return HttpResponse(json.dumps(response), content_type="application/json") 
+  return HttpResponse(json.dumps(response), content_type="application/json")
 
 def odooDelete(request):
+  response = {}
   try:
-    response = {}
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
+    
+    body = {
+      'id': request.POST.get('id'),
+    }
 
-    models.execute_kw(db, uid, password, 'product.product', 'unlink', [[body['id']]])
+    id = models.execute_kw(db, uid, password, 'product.product', 'unlink', [[body['id']]])
     response['response'] = 'Object Deleted.'
     response['id'] = id
   except Exception as error:
@@ -137,4 +147,24 @@ def odooDelete(request):
     response['response'] = []
 
 
-  return HttpResponse(json.dumps(response), content_type="application/json") 
+  return HttpResponse(json.dumps(response), content_type="application/json")
+
+def odooAddImage (request):
+  response = {}
+  try:
+    
+    name = request.FILES['file'].name
+    print(name)
+
+    yourImage = request.files.get(name)
+
+    # id = models.execute_kw(db, uid, password, 'product.product', 'write', [[body['id']], body])
+    response['response'] = 'Object Updated.'
+    # response['id'] = id
+  except Exception as error:
+    print(error)
+    response['error'] = True
+    response['response'] = []
+
+
+  return HttpResponse(json.dumps(response), content_type="application/json")
