@@ -4,7 +4,7 @@ from api.views import *
 
 urlpatterns = [
     path('', home, name='home'),
-    path('update/', update, name='update'),
+    path('update/<id_pet>/<name_pet>/<description_pet>/<price_pet>', update, name='update'),
     path('create/', create, name='create'),
     path('admin/', admin.site.urls),
     path('user/', index_page, name='index_page'),

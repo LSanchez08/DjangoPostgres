@@ -30,6 +30,8 @@ def index_page(request):
   return render(request, 'user/index.html', data)
 
 def home(request):
+  id_card_var =  7
+
   response = {}
   try:
     ids = models.execute_kw(db, uid, password, 'product.product', 'search_read', [])
@@ -43,13 +45,20 @@ def home(request):
     response['response'] = []
 
   context = {
-    "services": response['response']
+    "services": response['response'],
+    "id_card": id_card_var
   }
 
   return render(request, "pages/home.html", context)
 
-def update(request):
-  return render(request, "pages/update.html")
+def update(request, id_pet, name_pet, description_pet, price_pet):
+  context = {
+    "id_pet": id_pet,
+    "name_pet": name_pet,
+    "description_pet": description_pet,
+    "price_pet": price_pet
+  }
+  return render(request, "pages/update.html", context)
 
 def create(request):
   return render(request, "pages/create.html")
@@ -113,7 +122,7 @@ def odooPut(request):
   response = {}
   try:
     body = {
-      'id': request.POST.get('id'),
+      'id': int(request.POST.get('id')),
       'name': request.POST.get('name'),
       'description': request.POST.get('description'),
       'price': request.POST.get('price'),
@@ -128,7 +137,7 @@ def odooPut(request):
     response['response'] = []
 
 
-  return HttpResponse(json.dumps(response), content_type="application/json")
+  return home(request)
 
 def odooDelete(request):
   response = {}

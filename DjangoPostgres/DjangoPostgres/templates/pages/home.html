@@ -88,19 +88,19 @@
     <section id="services">
         <h1 class="title">Servicios</h1>
         <div class="container-btn-create">
-            <a href="create/" class="btn btn-primary"> Crear servicio</a>
+            <a href="{% url 'create' %}" class="btn btn-primary"> Crear servicio</a>
         </div>
         <div class="container div-main-services">
             {%if services%}
                 {%for ser in services%}
 
                     <div class="card" style="width: 18rem;">
-                        <img src="{% static 'imgs/perrito1.png' %}" class="card-img-top" alt="...">
+                        <img src="{% static 'imgs/perrito1.png' %}" class="card-img-top" alt="">
                         <div class="card-body">
-                        <h5 class="card-title">{{ser.name}}</h5>
-                        <p class="card-text">{{ser.description}}</p>
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#detailsProduct">Detalles</a>
-                        <a onClick="borrar()" class="btn btn-danger">Eliminar</a>
+                            <h5 class="card-title">{{ser.name}}</h5>
+                            <p class="card-text">{{ser.description}}</p>
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#detailsProduct">Detalles</a>
+                            <a onClick="borrar()" class="btn btn-danger">Eliminar</a>
                         </div>
                     </div>
 
@@ -267,21 +267,25 @@
     <div class="modal fade" id="detailsProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nombre</h5>
-            </div>
-            <div class="modal-body">
-                <img src="{% static 'imgs/perrito1.png' %}" class="card-img-top" alt="...">
-                <h5>Descripcion</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <h5>Precio</h5>
-                <p>$180</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <a class="btn btn-primary" href="update/">Editar</a>
-                <button onClick="borrar()" type="button" class="btn btn-danger">Eliminar</button>
-            </div>
+                {%for ser in services%}
+                    {%if ser.id == id_card%}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ser.name}}</h5>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{% static 'imgs/perrito1.png' %}" class="card-img-top" alt="...">
+                            <h5>Descripcion</h5>
+                            <p class="card-text">{{ser.description}}</p>
+                            <h5>Precio</h5>
+                            <p>{{ser.lst_price}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <a href="{% url 'update' id_pet=ser.id name_pet=ser.name description_pet=ser.description price_pet=ser.lst_price %}" class="btn btn-primary" href="update/">Editar</a>
+                            <button onClick="borrar()" type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    {%endif%}
+                {%endfor%}
             </div>
         </div>
     </div>
