@@ -8,7 +8,7 @@ from api.models import ResUsers
 
 from datetime import date
 
-url = 'http://18.223.171.177:8069'
+url = 'http://34.227.81.118:8069'
 db = 'PetWell'
 username = 'contacto@petwell.com'
 password = 'odoo'
