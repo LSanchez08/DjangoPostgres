@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-ajt2ii5!dz7=zi1$eedp9ygd&6s0bfz0087!6oys)fzy7l-gmi
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '34.227.81.118'
+    '34.227.81.118',
+    'localhost'
 ]
 
 
@@ -82,7 +83,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "PetWell",
         "USER": "odoo",
-        "PASSWORD": "myodoo",
+        "PASSWORD": "odoo",
         "HOST": "34.227.81.118",
         "PORT": 5432,
     }
